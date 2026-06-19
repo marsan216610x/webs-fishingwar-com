@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>捕鱼大作战 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      background-color: #fafafa;
+      color: #1e2a3a;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    /* 标题层级 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      margin-top: 8px;
+      margin-bottom: 32px;
+      border-bottom: 2px solid #dce1e8;
+      padding-bottom: 12px;
+      color: #0b1a2b;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: #1f2e42;
+      position: relative;
+      padding-left: 0;
+    }
+
+    h2::before {
+      content: "▹";
+      color: #3070b0;
+      font-weight: 400;
+      margin-right: 8px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      color: #30445c;
+    }
+
+    p {
+      margin-bottom: 18px;
+      font-size: 1rem;
+      color: #2c3e50;
+    }
+
+    /* 卡片区域 — 目录感布局 */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 24px 0 32px;
+    }
+
+    .card-item {
+      flex: 1 1 200px;
+      background: #ffffff;
+      border: 1px solid #e6eaf0;
+      border-radius: 16px;
+      padding: 20px 18px;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .card-item:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .card-item .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .card-item h4 {
+      font-weight: 520;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #1f2e42;
+    }
+
+    .card-item p {
+      font-size: 0.9rem;
+      color: #4b5e72;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* 提示区 / 说明区 的视觉分隔 */
+    .info-panel {
+      background: #f6f8fc;
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      border-left: 4px solid #3070b0;
+    }
+
+    .info-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-panel .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #3070b0;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .note {
+      background: #f0f3f7;
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 28px 0;
+      font-size: 0.95rem;
+    }
+
+    .note strong {
+      color: #192f44;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      margin-bottom: 22px;
+      border-bottom: 1px solid #eef2f6;
+      padding-bottom: 14px;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 520;
+      color: #1e2a3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .faq-question::before {
+      content: "Q";
+      font-weight: 600;
+      color: #3070b0;
+      margin-right: 8px;
+      font-size: 0.85rem;
+    }
+
+    .faq-answer {
+      color: #3d5268;
+      padding-left: 22px;
+    }
+
+    .faq-answer a {
+      color: #1f5c9e;
+      text-decoration: none;
+      border-bottom: 1px dotted #aec3db;
+    }
+
+    .faq-answer a:hover {
+      border-bottom: 1px solid #1f5c9e;
+    }
+
+    /* 信息区 + 相关链接 */
+    .related-links {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+
+    .related-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    .related-links li {
+      font-size: 0.95rem;
+    }
+
+    .related-links a {
+      color: #1f5c9e;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.1s;
+    }
+
+    .related-links a:hover {
+      border-bottom-color: #1f5c9e;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dee4ec;
+      margin: 32px 0 16px;
+    }
+
+    .footer-caption {
+      font-size: 0.85rem;
+      color: #5f738a;
+      margin-top: 48px;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .page {
+        padding: 32px 16px 60px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      .card-grid {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .card-item {
+        flex: 1 1 auto;
+      }
+      .info-panel {
+        padding: 18px 16px;
+      }
+      .related-links ul {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <h1>捕鱼大作战 · 知识库入口</h1>
+
+    <p>
+      如果你曾经打开过 <a href="https://webs-fishingwar.com" style="color:#1f5c9e;text-decoration:none;border-bottom:1px dotted #9bb3cf;">捕鱼大作战</a> 的页面，那么你大概已经体验过它节奏明快的水下场景。这个知识库页面是为反复回来查阅、收藏链接以及持续关注游戏内容更新的人准备的——不需要每次重新搜索，也不需要担心遗漏了什么。
+    </p>
+
+    <!-- 目录感卡片 -->
+    <div class="card-grid">
+      <div class="card-item">
+        <div class="card-icon">🎯</div>
+        <h4>核心机制</h4>
+        <p>鱼群行为、炮台倍率、特殊鱼种触发方式。适合新老玩家对比理解。</p>
+      </div>
+      <div class="card-item">
+        <div class="card-icon">📋</div>
+        <h4>版本记录</h4>
+        <p>从界面调整到活动规则变化，按时间整理，方便回溯。</p>
+      </div>
+      <div class="card-item">
+        <div class="card-icon">🔖</div>
+        <h4>收藏指引</h4>
+        <p>将本站加入浏览器书签，或复制链接到笔记应用，下次直接打开。</p>
+      </div>
+    </div>
+
+    <!-- 说明区 -->
+    <h2>再次访问与收藏</h2>
+    <p>
+      很多玩家会把 <a href="https://webs-fishingwar.com" style="color:#1f5c9e;text-decoration:none;border-bottom:1px dotted #9bb3cf;">捕鱼大作战</a> 放在浏览器的常驻标签页里。如果你也习惯这样做，可以直接用当前页面作为入口——它整理了一些常见的疑问和模块索引，不需要每次都从头翻找。建议收藏此页，或使用浏览器的“添加到主屏幕”功能。
+    </p>
+    <p>
+      页面内容会随游戏版本不定期调整，所以偶尔回来看一眼会有新收获。如果你发现某些信息和你记得的不一样，很可能是因为更新了。
+    </p>
+
+    <!-- 提示区 -->
+    <div class="info-panel">
+      <div class="label">📌 提示</div>
+      <p><strong>关于持续关注：</strong>如果你希望第一时间了解活动轮换或特殊鱼种出现规律，可以把 <a href="https://webs-fishingwar.com" style="color:#1f5c9e;text-decoration:none;border-bottom:1px dotted #9bb3cf;">捕鱼大作战</a> 加入书签栏。知识库本身不做推送，但会保持与站点同步。</p>
+      <p style="margin-top:8px;">另外，很多浏览器支持“阅读列表”功能，把页面保存后，即便离线也能查看文本框架。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <h2>常见问题摘要</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">页面上的信息是最新的吗？</div>
+      <div class="faq-answer">
+        本知识库内容基于 <a href="https://webs-fishingwar.com">捕鱼大作战</a> 公开信息整理，会跟随站点更新进行校对。建议开启自动刷新或偶尔手动检查。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">我该如何快速回到这个页面？</div>
+      <div class="faq-answer">
+        最简单的方式是直接收藏当前 URL。也可以在手机浏览器中“添加到主屏幕”，以后就像打开一个应用一样。如果你在电脑上使用，可以考虑固定在标签栏。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">这里会列出所有鱼类图鉴吗？</div>
+      <div class="faq-answer">
+        知识库会提供主要鱼种说明和特殊机制索引，更完整的图鉴建议直接参考 <a href="https://webs-fishingwar.com">捕鱼大作战</a> 游戏内图鉴系统。
+      </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <h2>相关信息</h2>
+    <p>
+      除了玩法核心，也有一些外围内容值得了解：比如炮台升级路径、每日奖励重置时间，以及不同海域的解锁条件。这些内容会在后续版本中逐步补充到知识库里。
+    </p>
+    <p>
+      另外，你可以在 <a href="https://webs-fishingwar.com" style="color:#1f5c9e;text-decoration:none;border-bottom:1px dotted #9bb3cf;">捕鱼大作战</a> 页面底部找到一些官方说明文档的链接（如果有的话）。知识库也会在相关位置做引用。
+    </p>
+
+    <!-- 相关链接区块 自然呈现 -->
+    <div class="related-links">
+      <ul>
+        <li>📘 <a href="https://webs-fishingwar.com">捕鱼大作战</a></li>
+        <li>📂 书签建议名称：捕鱼大作战-知识库</li>
+        <li>🔄 最近更新：2025-04 (界面微调)</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <p style="font-size:0.9rem; color:#3a5068;">
+      这份页面设计为轻量入口，适合反复回访。如果你觉得某些部分可以更清晰，或发现了过时的描述，可以对照 <a href="https://webs-fishingwar.com">捕鱼大作战</a> 当前内容做判断。持续关注，常看常新。
+    </p>
+
+    <div class="footer-caption">
+      — 整理于 quiet 知识库 · 保持简单
+    </div>
+
+  </div>
+</body>
+</html>

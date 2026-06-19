@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marsan216610x.github.io/webs-fishingwar-com/sitemap.xml
